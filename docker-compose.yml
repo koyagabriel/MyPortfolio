@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  portfolio:
+    build:
+      context: .
+    depends_on:
+      - db
+    container_name: portfolio
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    links:
+      - db
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=mysecretpassword
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.database
+    container_name: db
+    environment:
+      - POSTGRES_DB=MyPortfolio_development
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=mysecretpassword
