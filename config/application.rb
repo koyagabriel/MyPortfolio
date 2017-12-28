@@ -35,5 +35,8 @@ module MyPortfolio
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    #turn on permit for all parameters
+    # config.action_controller.permit_all_parameters = true
   end
 end
